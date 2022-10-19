@@ -1,3 +1,6 @@
+let pScore = 0;
+let cScore = 0;
+
 function getComputerChoice() {
     let n = Math.floor(Math.random() * 3); // return a random integer from 0 to 3
     if (n == 0) {
@@ -41,20 +44,83 @@ function playRound(p, c) {
 
     //check outcome and print message
     if (outcome == 1) {
-        return ("You won!");
+        pScore = pScore + 1;
+        return ("You won! " + p + " beats " + c);
     } else if (outcome == 0) {
-        return ("It's a draw!");
+        return ("It's a draw! You both picked " + p);
     } else {
-        return ("You lost :(");
+        cScore = cScore + 1;
+        return ("You lost :( " + c + " beats " + p);
     }
 }
 
-function game() {
-    for (let i = 0; i < 5; i++) {
-        let playerSelection = prompt("Enter rock paper scissors");
-        let computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection,computerSelection));
+let button1 = document.createElement('button')
+button1.innerText = 'Rock'
+button1.id = 'rockButton'
+button1.addEventListener('click', function() {
+    let c = getComputerChoice();
+    document.getElementById("results").innerHTML = playRound('rock', c);
+    document.getElementById("playerScore").innerHTML = "Player score: " + pScore;
+    document.getElementById("computerScore").innerHTML = "Computer score: " + cScore;
+    if (pScore == 5) {
+        document.getElementById("gameOver").innerHTML = "Player wins! Game over! Refresh to play again!";
+        button1.disabled = true;
+        button2.disabled = true;
+        button3.disabled = true;
     }
-}
+    if (cScore == 5) {
+        document.getElementById("gameOver").innerHTML = "Computer wins! Game over! Refresh to play again!";
+        button1.disabled = true;
+        button2.disabled = true;
+        button3.disabled = true;
+    }
+});
+document.body.appendChild(button1)
 
-game();
+let button2 = document.createElement('button')
+button2.innerText = 'Paper'
+button2.id = 'paperButton'
+button2.addEventListener('click', function() {
+    let c = getComputerChoice();
+    document.getElementById("results").innerHTML = playRound('paper', c);
+    document.getElementById("playerScore").innerHTML = "Player score: " + pScore;
+    document.getElementById("computerScore").innerHTML = "Computer score: " + cScore;
+    if (pScore == 5) {
+        document.getElementById("gameOver").innerHTML = "Player wins! Game over! Refresh to play again!";
+        button1.disabled = true;
+        button2.disabled = true;
+        button3.disabled = true;
+    }
+    if (cScore == 5) {
+        document.getElementById("gameOver").innerHTML = "Computer wins! Game over! Refresh to play again!";
+        button1.disabled = true;
+        button2.disabled = true;
+        button3.disabled = true;
+    }
+
+});
+document.body.appendChild(button2)
+
+let button3 = document.createElement('button')
+button3.innerText = 'Scissors'
+button3.id = 'scissorsButton'
+button3.addEventListener('click', function() {
+    let c = getComputerChoice();
+    document.getElementById("results").innerHTML = playRound('scissors', c);
+    document.getElementById("playerScore").innerHTML = "Player score: " + pScore;
+    document.getElementById("computerScore").innerHTML = "Computer score: " + cScore;
+    if (pScore == 5) {
+        document.getElementById("gameOver").innerHTML = "Player wins! Game over! Refresh to play again!";
+        button1.disabled = true;
+        button2.disabled = true;
+        button3.disabled = true;
+    }
+    if (cScore == 5) {
+        document.getElementById("gameOver").innerHTML = "Computer wins! Game over! Refresh to play again!";
+        button1.disabled = true;
+        button2.disabled = true;
+        button3.disabled = true;
+    }
+});
+document.body.appendChild(button3)
+
